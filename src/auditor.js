@@ -1,3 +1,6 @@
-const message = 'Hello';
-// eslint-disable-next-line no-console
-console.log(message);
+const dgram = require('dgram');
+
+const protocol = require('./orchestra-protocol');
+
+const socket = dgram.createSocket('udp6');
+
