@@ -1,4 +1,4 @@
-FROM node:4.3.1
+FROM node:12
 
 COPY src /opt/app/
 
@@ -7,4 +7,4 @@ RUN npm install
 
 EXPOSE 2205
 
-ENTRYPOINT ["node", "/opt/app/auditor.js"]
+CMD ["node", "/opt/app/auditor.js"]
