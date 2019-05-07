@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // Musician program: sends music through given protocol
 // Usage node musician.js instrument
 // instrument := piano | trumpet | flute | violin | drum
@@ -9,9 +10,6 @@ const uuid = require('uuid/v4');
 // Our own protocol definition
 const protocol = require('./orchestra-protocol');
 
-// Create a socket to send music
-const socket = dgram.createSocket('udp4');
-
 // Map which sound is made by which instrument
 const sound = {
   piano: 'ti-ta-ti',
@@ -21,11 +19,14 @@ const sound = {
   drum: 'boum-boum',
 };
 
+// Create a socket to send music
+const socket = dgram.createSocket('udp4');
+
 // Main function
 class Musician {
   // Musician constructor
   constructor(instrument) {
-    this.musician = uuid();
+    this.uuid = uuid();
     this.instrument = instrument;
     this.music = sound[instrument];
   }
@@ -33,7 +34,7 @@ class Musician {
   // Function that sends payload
   play() {
     const music = {
-      musician: this.musician,
+      uuid: this.uuid,
       instrument: this.instrument,
       sound: this.music,
     };
@@ -44,14 +45,16 @@ class Musician {
     // Send payload
     socket.send(payload, 0, payload.length, protocol.PROTOCOL_PORT,
       protocol.PROTOCOL_MULTICAST_ADDRESS, () => {
-        console.log(`Sending payload: ${payload} via port ${socket.address().port}.`);
+        console.log(`Sending payload: ${payload}\nvia port ${socket.address().port}.`);
       });
   }
 }
 
 // Get instrument from command line argument
-if (process.argv.length !== 3 || !(process.argv[2] in sound)) {
+if (process.argv.length !== 3) {
   throw new Error('Usage: node musician.js <instrument>');
+} else if (!(process.argv[2] in sound)) {
+  throw new Error('Instrument must be either piano, trumpet, flute, violin or drum');
 }
 const instrument = process.argv[2];
 
