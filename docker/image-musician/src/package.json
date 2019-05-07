@@ -1,0 +1,26 @@
+{
+  "name": "orchestra",
+  "version": "1.0.0",
+  "description": "Orchestra application using UDP",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon musician piano",
+    "start": "node musician piano"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Laykel/Teaching-HEIGVD-RES-2019-Labo-Orchestra.git"
+  },
+  "keywords": [
+    "udp", "tcp", "music", "server"
+  ],
+  "author": "Luc Wachter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Laykel/Teaching-HEIGVD-RES-2019-Labo-Orchestra/issues"
+  },
+  "homepage": "https://github.com/Laykel/Teaching-HEIGVD-RES-2019-Labo-Orchestra#readme",
+  "dependencies": {
+    "uuid": "^3.3.2"
+  }
+}

@@ -17,6 +17,7 @@ socket.bind(protocol.PROTOCOL_PORT, () => {
   console.log('Waiting for data.');
 });
 
+// Receive datagrams from the multicast group
 socket.on('message', (msg, source) => {
-  console.log(`Data has arrived: ${msg}. Source port: ${source.port}.`);
+  console.log(`Received: ${msg}.\nSource port: ${source.port}.`);
 });
