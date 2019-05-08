@@ -19,7 +19,7 @@ socket.bind(protocol.PROTOCOL_PORT, () => {
 });
 
 // Array of active musicians
-const activeMusicians = [];
+const activeMusicians = new Map();
 
 // Receive datagrams from the multicast group
 socket.on('message', (msg, source) => {
@@ -40,15 +40,16 @@ socket.on('message', (msg, source) => {
 function summary() {
   const musiciansSummary = [];
 
-  activeMusicians.forEach((element) => {
+  // Iterate through the keys in activeMusicians
+  Object.keys(activeMusicians).forEach((key) => {
     musiciansSummary.push({
-      uuid: Object.keys(element)[0],
-      instrument: element.instrument,
-      activeSince: element.activeSince,
+      uuid: key,
+      instrument: activeMusicians[key].instrument,
+      activeSince: activeMusicians[key].activeSince,
     });
   });
 
-  console.log(activeMusicians);
+  console.log(musiciansSummary);
 }
 
 // Every 5 seconds
