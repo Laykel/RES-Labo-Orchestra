@@ -27,37 +27,42 @@ const activeMusicians = new Map();
 
 // Receive datagrams from the multicast group
 socket.on('message', (msg, source) => {
+  console.log(`Payload received: ${msg}\nFrom port: ${source.port}`);
+
   // Parse received JSON
   const musician = JSON.parse(msg);
 
   // Add musician to list if he isn't already
   if (!(musician.uuid in activeMusicians)) {
-    activeMusicians[musician.uuid] = {
+    activeMusicians.set(musician.uuid, {
       instrument: musician.instrument,
       activeSince: moment().toISOString(),
-      activeLast: moment().valueOf(),
+      activeLast: moment().unix(),
       sourcePort: source.port,
-    };
+    });
   } else {
-    activeMusicians[musician.uuid].activeLast = moment().valueOf();
-  }
-
-  // Remove musician from list if he wasn't active
-  if (moment().valueOf() - activeMusicians[musician.uuid].activeLast > 5) {
-    activeMusicians.delete(musician.uuid);
+    // Else, just update his last appearance
+    activeMusicians.get(musician.uuid).activeLast = moment().unix();
   }
 });
 
 // Return active musicians summary
 function summary() {
+  // Remove musicians that haven't been active for 5 seconds
+  activeMusicians.forEach((element, key) => {
+    if (moment().unix() - element.activeLast > 5) {
+      activeMusicians.delete(key);
+    }
+  });
+
   const musiciansSummary = [];
 
-  // Iterate through the keys in activeMusicians
-  Object.keys(activeMusicians).forEach((key) => {
+  // Add active musicians to summary of active musicians
+  activeMusicians.forEach((value, key) => {
     musiciansSummary.push({
       uuid: key,
-      instrument: activeMusicians[key].instrument,
-      activeSince: activeMusicians[key].activeSince,
+      instrument: value.instrument,
+      activeSince: value.activeSince,
     });
   });
 
