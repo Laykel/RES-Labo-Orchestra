@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Laykel/Teaching-HEIGVD-RES-2019-Labo-Orchestra#readme",
   "dependencies": {
+    "moment": "^2.24.0",
     "uuid": "^3.3.2"
   }
 }

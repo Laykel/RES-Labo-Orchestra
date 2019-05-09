@@ -39,9 +39,8 @@ class Musician {
       sound: this.music,
     };
 
-    const message = JSON.stringify(music);
+    const payload = Buffer.from(JSON.stringify(music));
 
-    const payload = Buffer.from(message);
     // Send payload
     socket.send(payload, 0, payload.length, protocol.PROTOCOL_PORT,
       protocol.PROTOCOL_MULTICAST_ADDRESS, () => {

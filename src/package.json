@@ -12,7 +12,10 @@
     "url": "git+https://github.com/Laykel/Teaching-HEIGVD-RES-2019-Labo-Orchestra.git"
   },
   "keywords": [
-    "udp", "tcp", "music", "server"
+    "udp",
+    "tcp",
+    "music",
+    "server"
   ],
   "author": "Luc Wachter",
   "license": "ISC",
@@ -30,6 +33,7 @@
     "mocha": "^6.1.4"
   },
   "dependencies": {
+    "moment": "^2.24.0",
     "uuid": "^3.3.2"
   }
 }

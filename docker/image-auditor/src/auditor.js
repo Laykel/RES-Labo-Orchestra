@@ -5,6 +5,10 @@
 
 // UDP datagram (core node package)
 const dgram = require('dgram');
+// For the TCP connection
+const net = require('net');
+// Moment.js for the right date format
+const moment = require('moment');
 // Our own protocol definition
 const protocol = require('./orchestra-protocol');
 
@@ -30,24 +34,25 @@ socket.on('message', (msg, source) => {
   if (!(musician.uuid in activeMusicians)) {
     activeMusicians[musician.uuid] = {
       instrument: musician.instrument,
-      activeSince: new Date().toJSON().slice(0, 19).replace(/[-T]/g, ':'),
+      activeSince: moment().toISOString(),
+      activeLast: moment().valueOf(),
       sourcePort: source.port,
     };
+  } else {
+    activeMusicians[musician.uuid].activeLast = moment().valueOf();
+  }
+
+  // Remove musician from list if he wasn't active
+  if (moment().valueOf() - activeMusicians[musician.uuid].activeLast > 5) {
+    activeMusicians.delete(musician.uuid);
   }
 });
 
-// Send active musicians summary to client
+// Return active musicians summary
 function summary() {
   const musiciansSummary = [];
 
-  // activeMusicians.forEach((element) => {
-  //   musiciansSummary.push({
-  //     uuid: key,
-  //     instrument: element.instrument,
-  //     activeSince: element.activeSince,
-  //   });
-  // });
-
+  // Iterate through the keys in activeMusicians
   Object.keys(activeMusicians).forEach((key) => {
     musiciansSummary.push({
       uuid: key,
@@ -56,8 +61,25 @@ function summary() {
     });
   });
 
-  console.log(musiciansSummary);
+  return musiciansSummary;
 }
 
 // Every 5 seconds
-setInterval(summary.bind(summary), 5000);
+setInterval(summary.bind(), 5000);
+
+// Send summary to TCP client
+// Create TCP server
+const server = net.createServer();
+
+// Listen on same port our other protocol uses
+server.listen(protocol.PROTOCOL_PORT);
+
+// On each connection
+server.on('connection', (tcpSocket) => {
+  // Get summary and turn to payload
+  const payload = Buffer.from(JSON.stringify(summary()));
+
+  tcpSocket.write(payload);
+  tcpSocket.write('\r\n');
+  tcpSocket.end();
+});
