@@ -1,43 +1,43 @@
 origin	git@github.com:Laykel/Teaching-HEIGVD-RES-2019-Labo-Orchestra.git (fetch)
 origin	git@github.com:Laykel/Teaching-HEIGVD-RES-2019-Labo-Orchestra.git (push)
-Starting auditor container "6cf9f08bf17e01f8e26289a2b8fdc7667fe0ef8c6c5bfa23e459440e81c30525"
-Starting auditor container "9c0891a04f7e8e5edc5b86322809b8a32039e30c8f0b0ee51a8a23d3a78cded0"
-Starting auditor container "29235ae5862c07097c9bb5d0ada964c464164b384a1aa5665853c36cc955db94"
-Starting auditor container "25a4782a8cb632f872b3ac78ac16e753e96eb5e296982fffeb6e19d3d91f062b"
-Starting auditor container "2c7c21d202b9cf87f08b25719f8a32de74a4fcbaaaac6ae9ab7ee0b6812a62c0"
-Starting auditor container "0ce5e1ecbe7f1916d9d07a765d11c9682b0125f9732446c0c527d7ebaf39b850"
-Starting auditor container "21854b89ccf65a66f54deba61d3138adc2eac4c17c892313c0a2691b196dd499"
-Starting auditor container "a39ab1bb5ff92369bfe444f30a50d89f3e5c396c94d472b1001ea16a23347a84"
-Starting auditor container "90c9d4902aa8b37b44d1251a85865a2bd00bac1829860c09bcd22786aa4acd9f"
-Starting auditor container "b2d3f0a18a77c820042a5ec24f063dd4e9689329459cae97fb099faab393fad8"
-Starting auditor container "729d269ca203297fb2a7e979a02a65056d312f20ab23f83478a36c8f288a68ca"
+Starting auditor container "4db12963a2b041e8aa70ef26bb166d1c981d64676efa0dbf4fc0da5cb838c916"
+Starting auditor container "e2459400f9a8302c85ac9d5c3ff78967b5d7e6e86c5359256a45a41e9fad14a0"
+Starting auditor container "8e02e144b983f83165601d1f9d992a192640828898cfe1006c9f1a1d64d66459"
+Starting auditor container "0e32380bbed78981fcf3aa00ed4a29f96e620353197e28b7876e89bfec404c88"
+Starting auditor container "63f1693dd14205c688d086d3be50fa4cedba2b2a240fbb5040f061e747c3c476"
+Starting auditor container "1afa6d5d0629f713f9abb945eb8a5625ab366641ce87ef99cb23d1b511143e53"
+Starting auditor container "7951dda1eb7d46da661009b307ea0cff276656d994b0b9b42b46e1643be3cf92"
+Starting auditor container "b74a211400e7bfa499c5b287c4ca5a982eb42129e1471ef5835b61225d135860"
+Starting auditor container "d766dbe1545141c806f60c4627eddcf26094392901c7900b039b960ee7c993fd"
+Starting auditor container "629c1e2a2c5fbae3279826d9df8bdd040dbe76a575e5e282a5734d111a759977"
+Starting auditor container "9e1dda42d0d6df2387cabc549a21a9289dd61c5f598dadfedc09db6c3cd502bc"
 11 containers have been started.
-6cf9f08bf17e01f8e26289a2b8fdc7667fe0ef8c6c5bfa23e459440e81c30525 : /opt/app/musician.js,piano
-9c0891a04f7e8e5edc5b86322809b8a32039e30c8f0b0ee51a8a23d3a78cded0 : /opt/app/musician.js,violin
-a39ab1bb5ff92369bfe444f30a50d89f3e5c396c94d472b1001ea16a23347a84 : /opt/app/musician.js,violin
-729d269ca203297fb2a7e979a02a65056d312f20ab23f83478a36c8f288a68ca : /opt/app/musician.js,violin
-25a4782a8cb632f872b3ac78ac16e753e96eb5e296982fffeb6e19d3d91f062b : /opt/app/musician.js,violin
-29235ae5862c07097c9bb5d0ada964c464164b384a1aa5665853c36cc955db94 : /opt/app/musician.js,violin
-2c7c21d202b9cf87f08b25719f8a32de74a4fcbaaaac6ae9ab7ee0b6812a62c0 : /opt/app/musician.js,trumpet
-b2d3f0a18a77c820042a5ec24f063dd4e9689329459cae97fb099faab393fad8 : /opt/app/musician.js,drum
-90c9d4902aa8b37b44d1251a85865a2bd00bac1829860c09bcd22786aa4acd9f : /opt/app/musician.js,violin
-21854b89ccf65a66f54deba61d3138adc2eac4c17c892313c0a2691b196dd499 : /opt/app/musician.js,drum
-0ce5e1ecbe7f1916d9d07a765d11c9682b0125f9732446c0c527d7ebaf39b850 : /opt/app/auditor.js
-Auditor validation: success: ["drum","drum","piano","trumpet","violin","violin","violin","violin","violin","violin"]
+4db12963a2b041e8aa70ef26bb166d1c981d64676efa0dbf4fc0da5cb838c916 : /opt/app/musician.js,violin
+0e32380bbed78981fcf3aa00ed4a29f96e620353197e28b7876e89bfec404c88 : /opt/app/musician.js,flute
+e2459400f9a8302c85ac9d5c3ff78967b5d7e6e86c5359256a45a41e9fad14a0 : /opt/app/musician.js,flute
+7951dda1eb7d46da661009b307ea0cff276656d994b0b9b42b46e1643be3cf92 : /opt/app/musician.js,piano
+8e02e144b983f83165601d1f9d992a192640828898cfe1006c9f1a1d64d66459 : /opt/app/musician.js,violin
+63f1693dd14205c688d086d3be50fa4cedba2b2a240fbb5040f061e747c3c476 : /opt/app/musician.js,drum
+1afa6d5d0629f713f9abb945eb8a5625ab366641ce87ef99cb23d1b511143e53 : /opt/app/musician.js,flute
+9e1dda42d0d6df2387cabc549a21a9289dd61c5f598dadfedc09db6c3cd502bc : /opt/app/musician.js,piano
+d766dbe1545141c806f60c4627eddcf26094392901c7900b039b960ee7c993fd : /opt/app/musician.js,flute
+629c1e2a2c5fbae3279826d9df8bdd040dbe76a575e5e282a5734d111a759977 : /opt/app/musician.js,violin
+b74a211400e7bfa499c5b287c4ca5a982eb42129e1471ef5835b61225d135860 : /opt/app/auditor.js
+Auditor validation: success: ["drum","flute","flute","flute","flute","piano","piano","violin","violin","violin"]
 There are 10 musicians, let's kill one
-killed 90c9d4902aa8b37b44d1251a85865a2bd00bac1829860c09bcd22786aa4acd9f
-Auditor validation: success: ["drum","drum","piano","trumpet","violin","violin","violin","violin","violin"]
+killed 0e32380bbed78981fcf3aa00ed4a29f96e620353197e28b7876e89bfec404c88
+Auditor validation: success: ["drum","flute","flute","flute","piano","piano","violin","violin","violin"]
 Scheduling a new test
 There are 9 musicians, let's kill one
-killed b2d3f0a18a77c820042a5ec24f063dd4e9689329459cae97fb099faab393fad8
-Auditor validation: success: ["drum","piano","trumpet","violin","violin","violin","violin","violin"]
+killed 1afa6d5d0629f713f9abb945eb8a5625ab366641ce87ef99cb23d1b511143e53
+Auditor validation: success: ["drum","flute","flute","piano","piano","violin","violin","violin"]
 Scheduling a new test
 There are 8 musicians, let's kill one
-killed a39ab1bb5ff92369bfe444f30a50d89f3e5c396c94d472b1001ea16a23347a84
-Auditor validation: success: ["drum","piano","trumpet","violin","violin","violin","violin"]
+killed 629c1e2a2c5fbae3279826d9df8bdd040dbe76a575e5e282a5734d111a759977
+Auditor validation: success: ["drum","flute","flute","piano","piano","violin","violin"]
 Scheduling a new test
 There are 7 musicians, let's kill one
-killed 29235ae5862c07097c9bb5d0ada964c464164b384a1aa5665853c36cc955db94
-Auditor validation: success: ["drum","piano","trumpet","violin","violin","violin"]
+killed e2459400f9a8302c85ac9d5c3ff78967b5d7e6e86c5359256a45a41e9fad14a0
+Auditor validation: success: ["drum","flute","piano","piano","violin","violin"]
 Scheduling a new test
 We have done all tests.

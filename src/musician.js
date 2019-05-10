@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-// Musician program: sends music through given protocol
+// Musician program: sends music through orchestra protocol
 // Usage node musician.js instrument
 // instrument := piano | trumpet | flute | violin | drum
 

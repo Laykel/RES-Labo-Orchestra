@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-// Auditor program: receives music through given protocol (udp) and
-// sends a list of active musicians to its client (tcp).
+// Auditor program: receives music through orchestra protocol (multicast) and
+// sends a list of active musicians to a client (tcp), on the same port.
 // Usage: node auditor.js
 
 // UDP datagram (core node package)
@@ -12,6 +12,7 @@ const moment = require('moment');
 // Our own protocol definition
 const protocol = require('./orchestra-protocol');
 
+/* ********************** UDP Server ************************** */
 // Create a socket to send music
 const socket = dgram.createSocket('udp4');
 
@@ -33,7 +34,7 @@ socket.on('message', (msg, source) => {
   const musician = JSON.parse(msg);
 
   // Add musician to list if he isn't already
-  if (!(musician.uuid in activeMusicians)) {
+  if (!(activeMusicians.has(musician.uuid))) {
     activeMusicians.set(musician.uuid, {
       instrument: musician.instrument,
       activeSince: moment().toISOString(),
@@ -46,45 +47,40 @@ socket.on('message', (msg, source) => {
   }
 });
 
-// Return active musicians summary
-function summary() {
-  // Remove musicians that haven't been active for 5 seconds
-  activeMusicians.forEach((element, key) => {
-    if (moment().unix() - element.activeLast > 5) {
-      activeMusicians.delete(key);
-    }
-  });
-
-  const musiciansSummary = [];
-
-  // Add active musicians to summary of active musicians
-  activeMusicians.forEach((value, key) => {
-    musiciansSummary.push({
-      uuid: key,
-      instrument: value.instrument,
-      activeSince: value.activeSince,
-    });
-  });
-
-  return musiciansSummary;
-}
-
-// Every 5 seconds
-setInterval(summary.bind(), 5000);
-
-// Send summary to TCP client
+/* ********************** TCP Server ************************** */
 // Create TCP server
 const server = net.createServer();
 
 // Listen on same port our other protocol uses
 server.listen(protocol.PROTOCOL_PORT);
 
+// Return active musicians summary
+function summary() {
+  const musiciansSummary = [];
+
+  // Iterate through the orchestra
+  activeMusicians.forEach((element, key) => {
+    // Remove musicians that haven't been active for 5 seconds
+    if (moment().unix() - element.activeLast > 5) {
+      activeMusicians.delete(key);
+    } else {
+      // Add active musicians to summary of active musicians
+      musiciansSummary.push({
+        uuid: key,
+        instrument: element.instrument,
+        activeSince: element.activeSince,
+      });
+    }
+  });
+
+  return musiciansSummary;
+}
+
 // On each connection
 server.on('connection', (tcpSocket) => {
-  // Get summary and turn to payload
-  const payload = Buffer.from(JSON.stringify(summary()));
+  // Get summary and stringify it
+  const payload = JSON.stringify(summary(), null, 4);
 
   tcpSocket.write(payload);
-  tcpSocket.write('\r\n');
-  tcpSocket.end();
+  tcpSocket.end('\r\n');
 });
