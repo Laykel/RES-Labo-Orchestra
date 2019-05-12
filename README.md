@@ -128,7 +128,7 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 |Question | In Node.js, how can we **emit UDP datagrams**? |
 | | Using the `dgram` core module.  |
 |Question | In Node.js, how can we **access the command line arguments**? |
-| | Using `process.arv`.  |
+| | Using `process.argv`.  |
 
 
 ## Task 3: package the "musician" app in a Docker image
