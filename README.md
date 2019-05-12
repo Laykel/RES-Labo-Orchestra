@@ -1,12 +1,5 @@
 # Teaching-HEIGVD-RES-2019-Labo-Orchestra
 
-## Admin
-
-* **Every student** must do the implementation and have a repo with the code at the end of the process.
-* It is up to you if you want to fork this repo, or if you prefer to work in a private repo. However, you have to **use exactly the same directory structure for the validation procedure to work**. 
-* **There will be no grade for this lab. However, if you work on it seriously, the next challenge will be very easy (just be careful: the challenge will be done on a short period, so don't be late!)**
-* We expect that you will have more issues and questions than with other labs (because we have a left some questions open on purpose). Please ask your questions on Telegram, so that everyone in the class can benefit from the discussion.
-
 ## Objectives
 
 This lab has 4 objectives:
@@ -113,7 +106,7 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 |Question | What **payload** should we put in the UDP datagrams? |
 | | The datagram should contain the musician's `id`, its instrument and the sound it makes. |
 |Question | What **data structures** do we need in the UDP sender and receiver? When will we update these data structures? When will we query these data structures? |
-| | The sender needs a **map** to relate instruments to sounds and a **map** to contain the payload it will send. The receiver needs a **map** to store active musicians by their ids and an **array** to store the data it will send to a client. |
+| | The sender needs a **map** to relate instruments to sounds and a **map** to contain the payload it will send. The receiver needs a **map** to store active musicians by their ids and a **record** to store the data it will send to a client. |
 
 
 ## Task 2: implement a "musician" Node.js application
@@ -143,17 +136,17 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | --- |
 |Question | How do we **define and build our own Docker image**?|
-| | *Enter your response here...*  |
+| | We define them using a `Dockerfile` and we build them using the `docker build` command.  |
 |Question | How can we use the `ENTRYPOINT` statement in our Dockerfile?  |
-| | *Enter your response here...*  |
+| | It is used just like the `CMD` statement, but it will transfer the arguments we give to docker to the program launched by `ENTRYPOINT`.  |
 |Question | After building our Docker image, how do we use it to **run containers**?  |
-| | *Enter your response here...*  |
+| | Using the `docker run` command, eventually with `-d` to run in the background.  |
 |Question | How do we get the list of all **running containers**?  |
-| | *Enter your response here...*  |
+| | Using `docker ps`.  |
 |Question | How do we **stop/kill** one running container?  |
-| | *Enter your response here...*  |
+| | Using `docker kill container_id` or `docker kill container_name`. |
 |Question | How can we check that our running containers are effectively sending UDP datagrams?  |
-| | *Enter your response here...*  |
+| | Using `tcpdump` (and `grep` for example) or wireshark.  |
 
 
 ## Task 4: implement an "auditor" Node.js application
@@ -161,15 +154,15 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | ---  |
 |Question | With Node.js, how can we listen for UDP datagrams in a multicast group? |
-| | *Enter your response here...*  |
+| | Using node's `dgram` core module and the `addMembership` method.  |
 |Question | How can we use the `Map` built-in object introduced in ECMAScript 6 to implement a **dictionary**?  |
-| | *Enter your response here...* |
+| | Just create a `new Map()` and then fill it with the `set(key, value)` method. |
 |Question | How can we use the `Moment.js` npm module to help us with **date manipulations** and formatting?  |
-| | *Enter your response here...* |
+| | Using `npm` to install it (and add it to the dependency list) and through the use of its methods, like `toISOString` or `diff`. |
 |Question | When and how do we **get rid of inactive players**?  |
-| | *Enter your response here...* |
+| | I chose to check if a musician hasn't played for more than 5 seconds every time a TCP client connects. |
 |Question | How do I implement a **simple TCP server** in Node.js?  |
-| | *Enter your response here...* |
+| | Using node's `net` core module and the `listen` method. |
 
 
 ## Task 5: package the "auditor" app in a Docker image
@@ -177,7 +170,7 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | --- |
 |Question | How do we validate that the whole system works, once we have built our Docker image? |
-| | *Enter your response here...* |
+| | We need to check whether the Auditor adds a musician to the list when it plays, and that it removes it when it hasn't played for 5 seconds or more. We also need to make sure the Musicians send UDP datagrams correctly and that the Auditor returns the list of active musicians to a TCP client. We can use the `validate.sh` script to ensure that. |
 
 
 ## Constraints
