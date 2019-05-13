@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 // Auditor program: receives music through orchestra protocol (multicast) and
 // sends a list of active musicians to a client (tcp), on the same port.
 // Usage: node auditor.js
